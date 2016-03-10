@@ -11,8 +11,7 @@ class ExpensesController < ApplicationController
 	exp1= Expense.where("concept like ?", "%#{input_conc}%")
 	exp2= Expense.where(category_id: params[:category_id])
 
-	expe = (exp1 << exp2).flatten!
-	@expenses=expe.uniq
+	@expenses = (exp1 << exp2).flatten!.uniq
   end
 
 end
