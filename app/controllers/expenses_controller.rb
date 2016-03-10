@@ -1,13 +1,21 @@
 class ExpensesController < ApplicationController
 
   def index
-  	# @expenses= Expense.where("concept like ?", "%#{params[:concept]}%" ).where("category_id = ?", params[:category_id] )
 
-	if params[:concept].blank? || params[:category_id].blank?
-		@expenses = Expense.where("category_id = ?", -9999 )
-	else
-		@expenses= Expense.where("concept like ?", "%#{params[:concept]}%" ).where("category_id = ?", params[:category_id] )
+  	if params[:concept].blank? && params[:category_id].blank?
+  		return @expenses = Expense.where("category_id = ?", -9999 )
+  	elsif params[:category_id].blank?
+  		return @expenses= Expense.where("concept like ?", "%#{params[:concept]}%" )
+  	else
 
-	end
+  		return @expenses= Expense.where("concept like ?", "%#{params[:concept]}%" ).where("category_id = ?", params[:category_id] )
+  	end
+
+	# if params[:concept].blank? || params[:category_id].blank?
+	# 	@expenses = Expense.where("category_id = ?", -9999 )
+	# else
+	# 	@expenses= Expense.where("concept like ?", "%#{params[:concept]}%" ).where("category_id = ?", params[:category_id] )
+
+	# end
   end
 end
