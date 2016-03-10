@@ -2,9 +2,9 @@ class ExpensesController < ApplicationController
 
   def index
 
-  	if params[:concept].blank? && params[:category_id].blank?
-  		return @expenses = Expense.where("category_id = ?", -9999 )
-  	elsif params[:category_id].blank?
+  	# if params[:concept].blank? && params[:category_id].blank?
+  	# 	return @expenses = Expense.where("category_id = ?", -9999 )
+  	if params[:category_id].blank?
   		return @expenses= Expense.where("concept like ?", "%#{params[:concept]}%" )
   	else
 
